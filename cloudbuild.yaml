@@ -15,14 +15,14 @@ steps:
       - "build"
       - "-o"
       - "main"
-      - "."
+      - "/app"
 
   - id: "Executando a função soma"
     name: "gcr.io/cloud-builders/go"
     env:
       - GOPATH=/app
     args:
-      - "/app/main"
+      - "main"
 
   - name: "gcr.io/cloud-builders/docker"
     args:
