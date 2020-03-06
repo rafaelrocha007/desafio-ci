@@ -1,6 +1,8 @@
 steps:
   - id: "Rodando os testes"
     name: "gcr.io/cloud-builders/go"
+    env:
+      - GOPATH=/app
     args:
       - "test"
       - "."
