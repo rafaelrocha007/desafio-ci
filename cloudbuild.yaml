@@ -7,6 +7,23 @@ steps:
       - "test"
       - "."
 
+  - id: "Compilando a função soma"
+    name: "gcr.io/cloud-builders/go"
+    env:
+      - GOPATH=/app
+    args:
+      - "build"
+      - "-o"
+      - "main"
+      - "."
+
+  - id: "Executando a função soma"
+    name: "gcr.io/cloud-builders/go"
+    env:
+      - GOPATH=/app
+    args:
+      - "/app/main"
+
   - name: "gcr.io/cloud-builders/docker"
     args:
       - "build"
