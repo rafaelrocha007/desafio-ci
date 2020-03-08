@@ -1,35 +1,11 @@
 steps:
-  - id: "Rodando os testes"
-    name: "gcr.io/cloud-builders/go"
-    env:
-      - GOPATH=$PWD
-    args:
-      - "test"
-      - "."
-
-  - id: "Compilando a função soma"
-    name: "gcr.io/cloud-builders/go"
-    env:
-      - GOPATH=$PWD
-    args:
-      - "build"
-      - "-o"
-      - "soma"
-      - "."
-
-  - id: "Executando a função soma"
-    name: "gcr.io/cloud-builders/go"
-    env:
-      - GOPATH=$PWD
-    args:
-      - "./soma"
-
+  - name: "gcr.io/cloud-builders/go"
+    args: ["install", "soma"]
+    env: ["GOPATH=."]
+  - name: "gcr.io/cloud-builders/go"
+    args: ["test", "soma"]
+    env: ["GOPATH=."]
   - name: "gcr.io/cloud-builders/docker"
-    args:
-      - "build"
-      - "-t"
-      - "gcr.io/$PROJECT_ID/desafio-ci:latest"
-      - "."
-
+    args: ["build", "--tag=gcr.io/$PROJECT_ID/desafio-ci", "."]
 images:
   - "gcr.io/$PROJECT_ID/desafio-ci:latest"
