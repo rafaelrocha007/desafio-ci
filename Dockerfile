@@ -1,12 +1,12 @@
 FROM golang:latest as builder
 RUN mkdir /app
-COPY soma_test.go /app/
+COPY *.go /app/
 WORKDIR /app
-RUN go build -o main .
+RUN go build -o soma .
 
 
 FROM scratch
 
 COPY --from=builder /app /app
-CMD ["/app/main"]
+CMD ["/app/soma"]
 
