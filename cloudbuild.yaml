@@ -2,27 +2,27 @@ steps:
   - id: "Rodando os testes"
     name: "gcr.io/cloud-builders/go"
     env:
-      - GOPATH=/src
+      - GOPATH=$PWD
     args:
       - "test"
-      - "/src"
+      - "."
 
   - id: "Compilando a função soma"
     name: "gcr.io/cloud-builders/go"
     env:
-      - GOPATH=/src
+      - GOPATH=$PWD
     args:
       - "build"
       - "-o"
       - "soma"
-      - "/src"
+      - "."
 
   - id: "Executando a função soma"
     name: "gcr.io/cloud-builders/go"
     env:
-      - GOPATH=/src
+      - GOPATH=$PWD
     args:
-      - "/src/soma"
+      - "./soma"
 
   - name: "gcr.io/cloud-builders/docker"
     args:
