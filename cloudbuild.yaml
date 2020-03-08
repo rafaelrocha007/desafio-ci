@@ -5,7 +5,7 @@ steps:
       - GOPATH=/src
     args:
       - "test"
-      - "./..."
+      - "/src"
 
   - id: "Compilando a função soma"
     name: "gcr.io/cloud-builders/go"
@@ -15,14 +15,14 @@ steps:
       - "build"
       - "-o"
       - "soma"
-      - "./..."
+      - "/src"
 
   - id: "Executando a função soma"
     name: "gcr.io/cloud-builders/go"
     env:
       - GOPATH=/src
     args:
-      - "./soma"
+      - "/src/soma"
 
   - name: "gcr.io/cloud-builders/docker"
     args:
